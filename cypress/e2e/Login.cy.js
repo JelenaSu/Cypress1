@@ -11,7 +11,7 @@ describe("Login test cases", () => {
 
     //  Pozitivan case za login //
 
-    it("Login with valid credentials", () => {
+    it("Login/out with valid credentials", () => {
         cy.get('#email').type("test1235@gmail.com");
         cy.get('#password').type("test1235");
         cy.get('button[type="submit"]').click();
