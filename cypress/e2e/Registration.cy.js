@@ -170,7 +170,7 @@ describe("Registration test cases", () => {
   });
 
 
-  it("Register with invalid password -at least one digit.", () => {
+  it("Register with invalid password - w/o at least one digit.", () => {
 
     var uuid = () => Cypress._.random(0, 1e6)
     var id = uuid()
