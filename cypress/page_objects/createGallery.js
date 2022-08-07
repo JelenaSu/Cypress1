@@ -32,7 +32,7 @@ class CreateGallery {
         return cy.get("form > :nth-child(4)");
     } 
         
-    create(title, description, url) {
+    create(title, url, description = " ") {
         this.titleInput.type(title);
         this.descriptionInput.type(description);
         this.imagesUrl.type(url);
