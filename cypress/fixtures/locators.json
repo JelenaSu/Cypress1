@@ -2,7 +2,7 @@
     "login": {
         "emailInput": "#email",
         "passwordInput": "#password",
-        "submitButton": "[class='btn btn-custom']"
+        "submitButton": "button[type='submit']"
     },
 
     "header": {
@@ -26,9 +26,11 @@
         "titleInput": "#title",
         "descriptionInput": "#description",
         "imagesUrl": ".input-group > .form-control",
+        "imagesUrl2": ":nth-child(3) > .input-group > .form-control",
         "addFirstImage": "form > :nth-child(3) > :nth-child(3)",
         "addSecondImage": "form > :nth-child(3) > :nth-child(4)",
         "addThirdImage": "form > :nth-child(3) > :nth-child(5)",
+        "deleteUrl": ":nth-child(3) > .input-group > .input-group-append > :nth-child(1) > .fas",
         "submitButton": "form > :nth-child(4)"
     }
 
