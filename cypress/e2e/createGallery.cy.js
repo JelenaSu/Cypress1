@@ -21,8 +21,8 @@ describe("Create gallery test cases", () => {
 
     it("Create gallery without filling description tab", () => {
         cy.get(locators.header.createButton).click();
-        cy.get(locators.createGallery.titleInput).clear().type("grrrrr");
-        cy.get(locators.createGallery.imagesUrl).clear().type("https://i0.wp.com/shonery.rs/wp-content/uploads/2017/07/1370016000910-il_mio_nome_e_zagor.jpg?w=610&ssl=1");
+        cy.get(locators.createGallery.titleInput).type("grrrrr");
+        cy.get(locators.createGallery.imagesUrl).type("https://i0.wp.com/shonery.rs/wp-content/uploads/2017/07/1370016000910-il_mio_nome_e_zagor.jpg?w=610&ssl=1");
         cy.get(locators.createGallery.submitButton).click();
     });
 
