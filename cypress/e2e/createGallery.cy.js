@@ -100,17 +100,4 @@ describe("Create gallery test cases", () => {
         cy.get(locators.createGallery.submitButton).click();
     });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 });
