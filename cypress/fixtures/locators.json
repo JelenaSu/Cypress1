@@ -1,0 +1,35 @@
+{
+    "login": {
+        "emailInput": "#email",
+        "passwordInput": "#password",
+        "submitButton": "[class='btn btn-custom']"
+    },
+
+    "header": {
+        "loginButton": "a[href='/login']",
+        "logoutButton": "a[role='button ']",
+        "registerButton": "a[href='/register']",
+        "createButton": "a[href='/create']"
+    },
+
+    "register": {
+        "firstName": "#first-name",
+        "lastName": "#last-name",
+        "emailInput": "#email",
+        "passwordInput": "#password",
+        "passwordConfirmation": "#password-confirmation",
+        "formCheck": ".form-check-input",
+        "submitButton": "button[type='submit']"
+    },
+
+    "createGallery": {
+        "titleInput": "#title",
+        "descriptionInput": "#description",
+        "imagesUrl": ".input-group > .form-control",
+        "addFirstImage": "form > :nth-child(3) > :nth-child(3)",
+        "addSecondImage": "form > :nth-child(3) > :nth-child(4)",
+        "addThirdImage": "form > :nth-child(3) > :nth-child(5)",
+        "submitButton": "form > :nth-child(4)"
+    }
+
+}

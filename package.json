@@ -4,9 +4,12 @@
   "description": "",
   "main": "cypress.config.js",
   "scripts": {
-    "cypress": "./node_modules/.bin/cypress open"
+    "cypress": "npx cypress open"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@faker-js/faker": "^7.3.0"
+  }
 }
