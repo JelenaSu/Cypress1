@@ -1,17 +1,18 @@
 /// <reference types="Cypress" />
 
-// import { faker } from '@faker-js/faker';
+import { faker } from '@faker-js/faker';
 import { navigation } from "../page_objects/navigation";
-// import { registrationPage } from "../page_objects/registrationPage";
+import { registrationPage } from "../page_objects/registrationPage";
 
 
-// let user = {
-//   firstName: faker.name.firstName(),
-//   lastName: faker.name.lastName(),
-//   email: faker.internet.email(),
-//   password: faker.internet.password(),
 
-// }
+let user = {
+  firstName: faker.name.firstName(),
+  lastName: faker.name.lastName(),
+  email: faker.internet.email(),
+  password: faker.internet.password(),
+
+}
 
 const locators = require('../fixtures/locators.json');
 
@@ -30,6 +31,8 @@ describe("Registration test cases", () => {
     var uuid = () => Cypress._.random(0, 1e6);
     var id = uuid();
     var testName = `${id}@gmail.com`;
+
+    // registrationPage.registration(faker.name.firstName, faker.name.lastName, faker.internet.email, faker.internet.password, faker.internet.passwordConfirmation)
     
     cy.get(locators.register.firstName).clear().type("Petar");
     cy.get(locators.register.lastName).clear().type("Petrovic");

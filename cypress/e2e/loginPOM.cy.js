@@ -27,10 +27,7 @@ describe("Login test cases", () => {
     //  Pozitivan case za login //
 
     it("Login/out with valid credentials", () => {
-        loginPage.login("test1235@gmail.com, test1235");
-        // cy.get(locators.login.emailInput).type("test1235@gmail.com");
-        // cy.get(locators.login.passwordInput).type("test1235");
-        // cy.get(locators.login.submitButton).click();
+        loginPage.login("test1235@gmail.com", "test1235");
         cy.wait(1000);
         navigation.clickOnLogoutButton();
         // cy.get(locators.header.logoutButton).click();

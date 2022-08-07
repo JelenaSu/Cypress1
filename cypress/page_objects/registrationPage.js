@@ -29,8 +29,8 @@ class RegistrationPage {
     }
 
     registration(firstName, lastName, email, password, passwordConfirmation) {
-        this.firstName.type("firstName");
-        this.lastName.type("lastName");
+        this.firstName.type(firstName);
+        this.lastName.type(lastName);
         this.emailInput.type(email);
         this.passwordInput.type(password);
         this.passwordConfirmation.type(passwordConfirmation);
