@@ -6,6 +6,7 @@ module.exports = defineConfig({
       // implement node event listeners here
     },
 
-    baseUrl: "https://gallery-app.vivifyideas.com/"
+    baseUrl: "https://gallery-app.vivifyideas.com/",
+    watchForFileChanges: false
   },
 });

@@ -4,6 +4,7 @@ const locators = require('../fixtures/locators.json');
 import { navigation } from "../page_objects/navigation";
 import { loginPage } from "../page_objects/loginPage";
 import { faker } from '@faker-js/faker';
+import { general } from "../page_objects/general";
 
 
 let user = {
@@ -17,59 +18,53 @@ let user = {
 describe("Login test cases", () => {
     beforeEach("Visit gallery app page and click on login button", () => {
         cy.visit("/");
+        cy.url().should('contain', 'https://gallery-app.vivifyideas.com/');
+        general.headerTitle.should('have.text', 'All Galleries');
         navigation.clickOnLoginButton();
+        cy.url().should('contain', '/login');
+        general.headerTitle.should('have.text', 'Please login');
     });
-
-    // it("Click on login button", () => {
-    //     cy.get(locators.header.loginButton).click();
-    // });
 
     //  Pozitivan case za login //
 
-    it("Login/out with valid credentials", () => {
+    it("Login with valid credential and logout", () => {
         loginPage.login("test1235@gmail.com", "test1235");
-        cy.wait(1000);
+        navigation.loginButton.should('not.exist');
+        navigation.logoutButton.should('exist');
         navigation.clickOnLogoutButton();
-        // cy.get(locators.header.logoutButton).click();
-        // cy.get(locators.header.loginButton).click();
+        navigation.logoutButton.should('not.exist');
+        navigation.loginButton.should('exist');
     });
 
    
     //  Negativni case-ovi za login //
 
     it("Login with invalid credentials", () => { 
-        // cy.visit("/");
         navigation.clickOnLoginButton();
         loginPage.login(faker.internet.email(), faker.internet.password());
-        // cy.get(locators.login.emailInput).clear().type("test00@gmail.com");
-        // cy.get(locators.login.passwordInput).clear().type("lest1235");
-        // cy.get(locators.login.submitButton).click();
+        general.errorMessage.should('exist')
+        .and('have.text', 'Bad Credentials')
+        .and('have.css', 'background-color', 'rgb(248, 215, 218)')
+        .and('have.css', 'color', 'rgb(114, 28, 36)');
+        navigation.loginButton.should('exist');
     });
 
     it("Login with invalid email", () => {
         loginPage.login(faker.internet.email(), "test1235");
-        // cy.get(locators.login.emailInput).clear().type("test00gmailcom");
-        // cy.get(locators.login.passwordInput).clear().type("test1235");
-        // cy.get(locators.login.submitButton).click();
+        general.errorMessage.should('exist');
     });
 
     it("Login with invalid password", () => {
         loginPage.login("test1235@gmail.com", faker.internet.password());
-        // cy.get(locators.login.emailInput).clear().type("test1235@gmail.com");
-        // cy.get(locators.login.passwordInput).clear().type("00000");
-        // cy.get(locators.login.submitButton).click();
+        general.errorMessage.should('exist');
     });
 
     it("Login with blank email", () => {
-        cy.get(locators.login.emailInput).clear().type("{backspace}");
-        cy.get(locators.login.passwordInput).clear().type("test1235");
-        // cy.get(locators.login.submitButton).click();
+        loginPage.login("{backspace}", faker.internet.password());
     });
 
     it("Login with blank password", () => {
-        cy.get(locators.login.emailInput).clear().type("test1235@gmail.com");
-        cy.get(locators.login.passwordInput).clear().type("{backspace}");
-        // cy.get(locators.login.submitButton).click();
+        loginPage.login(faker.internet.email(), "{backspace}");
     });
 
 });

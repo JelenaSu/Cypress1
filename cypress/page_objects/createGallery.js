@@ -8,8 +8,12 @@ class CreateGallery {
         return cy.get('#description');
     }
 
-    get imagesUrl() {
-        return cy.get('[placeholder="image url"]');
+    get imageUrl() {
+        return cy.get('[placeholder="image url"]').first();
+    }
+
+    get imageUrl2() {
+        return cy.get('[placeholder="image url"]').last();
     }
 
     get addFirstImage() {
@@ -29,13 +33,49 @@ class CreateGallery {
     }
         
     get submitButton() {
-        return cy.get("form > :nth-child(4)");
+        return cy.get('button[type="submit"]').first();
     } 
-        
+
+    get cancelButton() {
+        return cy.get('button[type="submit"]').last();
+    }
+
+    clickOnAddFirstImageButton() {
+        this.addFirstImage.click();
+    }
+
+    clickOnDeleteUrlButton() {
+        this.deleteUrl.click();
+    }
+
+    clickOnSubmitButton() {
+        this.submitButton.click();
+    }
+
+  
     create(title, url, description = " ") {
         this.titleInput.type(title);
         this.descriptionInput.type(description);
-        this.imagesUrl.type(url);
+        this.imageUrl.type(url);
+        this.submitButton.click();
+    }
+
+    createMoreThanOneUrl(title, url, url2, description = " ") {
+        this.titleInput.type(title);
+        this.descriptionInput.type(description);
+        this.imageUrl.type(url);
+        this.addFirstImage.click();
+        this.imageUrl2.type(url2);
+        this.submitButton.click();
+    }
+
+    createMoreThanOneUrlAndDelete(title, url, url2, description = " ") {
+        this.titleInput.type(title);
+        this.descriptionInput.type(description);
+        this.imageUrl.type(url);
+        this.addFirstImage.click();
+        this.imageUrl2.type(url2);
+        this.deleteUrl.click();
         this.submitButton.click();
     }
 }

@@ -21,7 +21,7 @@ class RegistrationPage {
     }
 
     get formCheck() {
-        return cy.click(".form-check-input");
+        return cy.get("input[class='form-check-input']");
     }
 
     get submitButton() {
@@ -35,6 +35,15 @@ class RegistrationPage {
         this.passwordInput.type(password);
         this.passwordConfirmation.type(passwordConfirmation);
         this.formCheck.click();
+        this.submitButton.click();
+    }
+
+    registrationWithoutFormCheck(firstName, lastName, email, password, passwordConfirmation) {
+        this.firstName.type(firstName);
+        this.lastName.type(lastName);
+        this.emailInput.type(email);
+        this.passwordInput.type(password);
+        this.passwordConfirmation.type(passwordConfirmation);
         this.submitButton.click();
     }
 
