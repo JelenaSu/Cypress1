@@ -1,5 +1,13 @@
 class CreateGallery {
 
+    get errorDescriptionMessage() {
+        return cy.get('[class="alert alert-danger"]');
+    }
+
+    get createForm() {
+        return cy.get('form');
+    }
+
     get titleInput() {
         return cy.get("#title");
     }
@@ -38,7 +46,9 @@ class CreateGallery {
 
     get cancelButton() {
         return cy.get('button[type="submit"]').last();
+
     }
+
 
     clickOnAddFirstImageButton() {
         this.addFirstImage.click();

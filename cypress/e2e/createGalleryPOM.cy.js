@@ -6,6 +6,7 @@ import { faker } from '@faker-js/faker';
 import { loginPage } from "../page_objects/loginPage";
 import { general } from "../page_objects/general";
 
+
 const locators = require('../fixtures/locators.json');
 
 
@@ -35,6 +36,17 @@ let user = {
     // Pozitivni test case-ovi 
 
     it("Create gallery with filled all requirements", () => {
+        navigation.logoutButton.should('exist');
+        navigation.loginButton.should('not.exist');
+        navigation.registrationButton.should('not.exist');
+        createGallery.createForm.should('exist');
+        createGallery.createForm.should('have.text', 'Title:Descriptions:Images:Add imageSubmitCancel');
+        createGallery.titleInput.should('exist');
+        createGallery.descriptionInput.should('exist');
+        createGallery.imageUrl.should('exist');
+        createGallery.addFirstImage.should('exist');
+        createGallery.submitButton.should('exist');
+        createGallery.cancelButton.should('exist');
         createGallery.create(faker.word.verb(), faker.image.imageUrl(), faker.lorem.lines());
     });
 
@@ -62,10 +74,14 @@ let user = {
 
     it("Create gallery when description field exceeded maximum of 1000 chars", () => {
         createGallery.create(faker.word.verb(), faker.image.imageUrl(), "muXKBDeUwXoYIW1YjZDTJAjguhB3eAVn0jPNqE638bUz0AQtBSo1BViMBR7vUjRvQw6d0UBumOBMFMMIepBAamcL3TXbdzrsODPZkw4W5gs1TiHsGRt957ol9TsyDlaztNy2bAiv0hr7hgwcfnbsbuzN6giDHdGvThKm0pWPw0MyRTE7G7vfnurphtpUZKRjOR0FVuXJZnUvF5mj4NFccSwWBcKeiXCJNYK3WbLeCBVFOGADfvy6LsL4BOnXiCbtFvXx1tHzO1ldxievTwnOi6onIrc5r7vA2nPACj57t5U0zcbBm4O96pNYRf7fGCHfPYJdmEzg5ga4nKha47fCtK6eIaG5hcnyj2xws710bs1P9JuUETwG2ggNnznM15SeXf1Ot9qRdI1yi8mWQmB73qMQPpB79vmLheweO4nv5I0qKJWWtRIRa4wkKk8RKy38JbYZJSgpk02oXyexYmUsg0O67a26MGvsDbXTOJYuNfBiMtNXRS7nJfwk5eWg7mvGRH38NPOSQlCQb6UmiAKea159uBjIo2eq8X5XbdgqNq0UXyN4Oj2MPwRGtDrTbEmCeYLmQxn58w2Sq4ZErfcN75RMVv6JHHYmXIVe0g5DfNy7WVc9bXg3qCA2yOFrXCVESDQYb3vJHM9bCMGVuCb59mPSNHdcedHmQPPcPhbmutvWP7xnAjWRYKRYQ1awDtAnJLr44qu1ebNU19Wvd4gfB0LMDiQizuxqqoknZVE3Qc4hC1caYLGfJRdJ9w9DFiWDBhIZodqFPnM6KMluyAfXKfyuN5OsuHI8Tlo53ruNYOJNVkuEPu77BfX62g47MYtfTd79LLvFGCiOV5MbxK60FkUk5a0sZa02LcuNPSGK75RYK5v9ET89aoUYzRUctneiyYj1XcTOmCcSq6hAgmgUo6oGCGrsScpgc5PfpQgSnCgyCQkXwRq6QvHSzH2ZWhs7lDRWt4GVd7CTEhR6PUA8mTu4h4TQzisS16OqlFOTc");
+        createGallery.errorDescriptionMessage.should('exist')
+        .and('have.text', 'The description may not be greater than 1000 characters.Wrong format of image');
     });
 
     it("Create gallery without filling title tab", () => {
         createGallery.create(" ", faker.image.imageUrl()); 
+        createGallery.errorDescriptionMessage.should('exist')
+        .and('have.text','The title field is required.Wrong format of image');
     });
 
     it("Create gallery without filling URL tab", () => {
@@ -74,22 +90,34 @@ let user = {
 
     it("Create gallery with title less than minimum of 2 chars ", () => {
         createGallery.create("g", faker.image.imageUrl());
+        createGallery.errorDescriptionMessage.should('exist')
+        .and('have.text','The title must be at least 2 characters.Wrong format of image');
     });
 
     it("Create gallery with title more than maximum of 255 chars ", () => {
-        createGallery.create("Jm8VJEq55Q0JeBw2YyZ3SB69E9yiJxyUGm20XyYi3Ip3kaXUq5Sboijn5SM3xTvIlatMsu1t314PRFH0Nq5Kz57JmuNIOkZDabtrVXGjkgcASv8Dq2dQsUsxiA4N0RHLmOc3RXaYirBrnVQCpdiZp4ZZ5XY8eNXM1Uc0oRKHd2Y0E58er8lGQM0E5pgHLt7gS7hLZcbQv8kQF50NvXQ5jTosB2lRy9mAw4gHncazojZ72kaLaUbdjqrcoJnRQ3bb", " ", faker.image.imageUrl());
+        createGallery.create("Jm8VJEq55Q0JeBw2YyZ3SB69E9yiJxyUGm20XyYi3Ip3kaXUq5Sboijn5SM3xTvIlatMsu1t314PRFH0Nq5Kz57JmuNIOkZDabtrVXGjkgcASv8Dq2dQsUsxiA4N0RHLmOc3RXaYirBrnVQCpdiZp4ZZ5XY8eNXM1Uc0oRKHd2Y0E58er8lGQM0E5pgHLt7gS7hLZcbQv8kQF50NvXQ5jTosB2lRy9mAw4gHncazojZ72kaLaUbdjqrcoJnRQ3bb", faker.image.imageUrl());
+        createGallery.errorDescriptionMessage.should('exist')
+        .and('have.text','The title may not be greater than 255 characters.Wrong format of image');
     });
 
     it("Create gallery with invalid URL format, w/o proper picture extension (.jpg, .png, .jpeg) ", () => {
         createGallery.create(faker.word.verb(), "https://i0.wp.com/shonery.rs/wp-content/uploads/2017/07/1370016000910-il_mio_nome_e_zagor?w=610&ssl=1");
+        createGallery.errorDescriptionMessage.should('exist')
+        .and('have.text','Wrong format of image');
     });
 
     it("Check option for adding more than one URL", () => {
         createGallery.createMoreThanOneUrl(faker.word.verb(), user.imageUrl, user.imageUrl2);
+        createGallery.imageUrl.should('exist');
+        createGallery.imageUrl2.should('exist');
+        createGallery.deleteUrl.should('exist');
     });
 
-    it("Check option for deleting URL when there is more than one", () => {
+    it.only("Check option for deleting URL when there is more than one", () => {
         createGallery.createMoreThanOneUrlAndDelete(faker.word.verb(), user.imageUrl, user.imageUrl2);
+        createGallery.imageUrl.should('exist');
+        createGallery.imageUrl2.should('exist');
+        createGallery.deleteUrl.should('not.exist');
     });
 
 });
