@@ -46,25 +46,50 @@ describe("Login test cases", () => {
         .and('have.text', 'Bad Credentials')
         .and('have.css', 'background-color', 'rgb(248, 215, 218)')
         .and('have.css', 'color', 'rgb(114, 28, 36)');
+        loginPage.submitButton.should('exist')
+        .and('have.css', 'background-color', 'rgb(72, 73, 75)')
+        .and('have.css', 'color', 'rgb(255, 255, 255)');
         navigation.loginButton.should('exist');
     });
 
     it("Login with invalid email", () => {
         loginPage.login(faker.internet.email(), "test1235");
-        general.errorMessage.should('exist');
+        general.errorMessage.should('exist')
+        .and('have.text', 'Bad Credentials')
+        .and('have.css', 'background-color', 'rgb(248, 215, 218)')
+        .and('have.css', 'color', 'rgb(114, 28, 36)');
+        loginPage.submitButton.should('exist')
+        .and('have.css', 'background-color', 'rgb(72, 73, 75)')
+        .and('have.css', 'color', 'rgb(255, 255, 255)');
+        navigation.loginButton.should('exist');
     });
 
     it("Login with invalid password", () => {
         loginPage.login("test1235@gmail.com", faker.internet.password());
-        general.errorMessage.should('exist');
+        general.errorMessage.should('exist')
+        .and('have.text', 'Bad Credentials')
+        .and('have.css', 'background-color', 'rgb(248, 215, 218)')
+        .and('have.css', 'color', 'rgb(114, 28, 36)');
+        loginPage.submitButton.should('exist')
+        .and('have.css', 'background-color', 'rgb(72, 73, 75)')
+        .and('have.css', 'color', 'rgb(255, 255, 255)');
+        navigation.loginButton.should('exist');
     });
 
     it("Login with blank email", () => {
         loginPage.login("{backspace}", faker.internet.password());
+        loginPage.submitButton.should('exist')
+        .and('have.css', 'background-color', 'rgb(72, 73, 75)')
+        .and('have.css', 'color', 'rgb(255, 255, 255)');
+        navigation.loginButton.should('exist');
     });
 
     it("Login with blank password", () => {
         loginPage.login(faker.internet.email(), "{backspace}");
+        loginPage.submitButton.should('exist')
+        .and('have.css', 'background-color', 'rgb(72, 73, 75)')
+        .and('have.css', 'color', 'rgb(255, 255, 255)');
+        navigation.loginButton.should('exist');
     });
 
 });
