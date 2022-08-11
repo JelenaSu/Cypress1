@@ -32,16 +32,22 @@ let user = {
         createGallery.create(user.title, 'https://media.macphun.com/img/uploads/customer/how-to/579/15531840725c93b5489d84e9.43781620.jpg?q=85&w=1340');
     });
 
-    it('Check My Galleries page', () => {
+    it.only('Check My Galleries page', () => {
         navigation.myGalleriesButton.should('exist');
         navigation.clickOnMyGalleriesButton();
+        cy.url().should('contain', 'https://gallery-app.vivifyideas.com/my-galleries');
         cy.wait(2000);
         navigation.clickOnMyGalleriesButton();
-        general.headerTitle.should('have.text', 'My Galleries');
-        myGalleries.inputFilterSearch.should('exist');
-        myGalleries.filterSearchButton.should('exist');
+        general.headerTitle.should('have.text', 'My Galleries')
+        .and('have.css', 'color', 'rgb(72, 73, 75)');
+        myGalleries.inputFilterSearch.should('exist')
+        .and('have.class', 'form-control');
+        myGalleries.filterSearchButton.should('exist')
+        .and('have.css', 'color', 'rgb(72, 73, 75)');
         myGalleries.newCreatedDivGrid.should('exist');
-        myGalleries.h2NewTitle.should('exist');
+        myGalleries.h2NewTitle.should('exist')
+        .and('have.css', 'color', 'rgb(0, 0, 0)')
+        .and('have.css', 'font-size', '32px');
         myGalleries.h2NewTitle.should('contain', user.title);
     });
   });
