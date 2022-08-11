@@ -70,6 +70,7 @@ describe("Registration test cases", () => {
     .and('have.css', 'background-color', 'rgb(72, 73, 75)')
     .and('have.css', 'color', 'rgb(255, 255, 255)');
     registrationPage.registration(faker.name.firstName(), faker.name.lastName(), faker.internet.email(), user.password, user.password);
+    registrationPage.formCheck.should('be.checked');
     navigation.registrationButton.should('not.exist');
     navigation.loginButton.should('not.exist');
     navigation.myGalleriesButton.should('exist')
@@ -187,12 +188,13 @@ describe("Registration test cases", () => {
   });
 
 
-  it("Register with unchecked Terms and conditions", () => {
+  it.only("Register with unchecked Terms and conditions", () => {
     registrationPage.registrationWithoutFormCheck(faker.name.firstName(), faker.name.lastName(), faker.internet.email(), user.password, user.password);
     registrationPage.messageErrorAlert.should('exist')
     .and('have.text', 'The terms and conditions must be accepted.')
     .and('have.css', 'background-color', 'rgb(248, 215, 218)')
     .and('have.css', 'color', 'rgb(114, 28, 36)');
+    registrationPage.formCheck.should('not.be.checked');
   });
 
 });
