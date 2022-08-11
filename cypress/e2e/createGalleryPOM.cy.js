@@ -5,6 +5,8 @@ import { createGallery } from "../page_objects/createGallery";
 import { faker } from '@faker-js/faker';
 import { loginPage } from "../page_objects/loginPage";
 import { general } from "../page_objects/general";
+import { myGalleries } from "../page_objects/myGalleries";
+import { allGalleries } from "../page_objects/All Galleries";
 
 
 const locators = require('../fixtures/locators.json');
@@ -39,8 +41,8 @@ let user = {
         navigation.logoutButton.should('exist');
         navigation.loginButton.should('not.exist');
         navigation.registrationButton.should('not.exist');
-        createGallery.createForm.should('exist');
-        createGallery.createForm.should('have.text', 'Title:Descriptions:Images:Add imageSubmitCancel');
+        createGallery.createForm.should('exist')
+        .and('have.text', 'Title:Descriptions:Images:Add imageSubmitCancel');
         createGallery.titleInput.should('exist');
         createGallery.descriptionInput.should('exist');
         createGallery.imageUrl.should('exist');
@@ -51,7 +53,17 @@ let user = {
         createGallery.cancelButton.should('exist')
         .and('have.css', 'background-color', 'rgb(72, 73, 75)')
         .and('have.css', 'color', 'rgb(255, 255, 255)');
-        createGallery.create(faker.word.verb(), faker.image.imageUrl(), faker.lorem.lines());
+        createGallery.create(faker.word.verb(), 'https://media.macphun.com/img/uploads/customer/how-to/579/15531840725c93b5489d84e9.43781620.jpg?q=85&w=1340');
+        createGallery.submitButton.should('not.exist');
+        createGallery.cancelButton.should('not.exist');
+        general.headerTitle.should('exist')
+        .and('have.text', 'All Galleries');
+        allGalleries.inputFilterSearch.should('exist');
+        allGalleries.filterSearchButton.should('exist')
+        .and('have.css', 'color', 'rgb(72, 73, 75)');
+        allGalleries.loadMoreButton.should('exist')
+        .and('have.css', 'background-color', 'rgb(72, 73, 75)')
+        .and('have.css', 'color', 'rgb(255, 255, 255)');
     });
 
     it("Create gallery without filling description tab", () => {

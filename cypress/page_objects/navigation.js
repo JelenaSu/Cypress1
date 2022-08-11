@@ -15,6 +15,32 @@ class Navigation {
         return cy.get("[href='/create']");
     }
 
+    get myGalleriesButton() {
+        return cy.get('[href="/my-galleries"]');
+    }
+
+    get allGalleriesButton() {
+        return cy.get('[href="/"]').last();
+    }
+
+    get galleryAppButtonMain() {
+        return cy.get('[href="/"]').first();
+    }
+
+
+    clickOnAllGalleriesButton() {
+        this.allGalleriesButton.click();
+    }
+
+    clickOnMyGalleriesButton() {
+        this.myGalleriesButton.click();
+    }
+
+    clickOnGallerieAppButtonMain() {
+        this.galleryAppButtonMain.click();
+    }
+    
+
     clickOnCreateGalleryButton() {
         this.createGalleryButton.click();
     }

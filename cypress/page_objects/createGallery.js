@@ -45,9 +45,9 @@ class CreateGallery {
     } 
 
     get cancelButton() {
-        return cy.get('button[type="submit"]').last();
-
+        return cy.get('form > :nth-child(5)');
     }
+
 
 
     clickOnAddFirstImageButton() {
