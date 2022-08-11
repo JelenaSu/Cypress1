@@ -15,8 +15,8 @@ let user = {
     imageUrl2: faker.image.imageUrl()
   }
 
-  describe("Create gallery test cases", () => {
-    beforeEach("Visit Gallery app page, click on Login button, login on page and click on Create gallery button", () => {
+  describe("Check My Gallery test cases", () => {
+    beforeEach("Visit Gallery app page, click on Login button, login on page, click on Create gallery button and create new gallery", () => {
         cy.visit("/");
         cy.url().should('contain', 'https://gallery-app.vivifyideas.com/');
         general.headerTitle.should('have.text', 'All Galleries');
